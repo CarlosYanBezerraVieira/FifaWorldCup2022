@@ -1,4 +1,5 @@
 import 'package:fwc_album_app/app/pages/splash/view/splash_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import './splash_presenter.dart';
 
@@ -7,14 +8,13 @@ class SplashPresenterImpl implements SplashPresenter {
 
   @override
   Future<void> checkLogin() async {
-   _view.showLoader();
-  await Future.delayed(const Duration(seconds: 2));
-  _view.logged(false);
+    _view.showLoader();
+    await Future.delayed(const Duration(seconds: 2));
+    final sp = await SharedPreferences.getInstance();
+    final accessToken = sp.getString('accessToken');
+    _view.logged(accessToken != null);
   }
 
   @override
   set view(view) => _view = view;
-
-
-
 }
