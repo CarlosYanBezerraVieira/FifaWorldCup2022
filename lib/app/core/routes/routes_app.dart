@@ -11,6 +11,7 @@ class RoutesApp {
 
   String get splashPage => "/";
   String get login => "/auth/login";
+  String get register => "/auth/register";
   String get home => "/home";
 }
 
