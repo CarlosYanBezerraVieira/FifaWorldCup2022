@@ -1,6 +1,7 @@
 import 'package:fwc_album_app/app/repository/auth/auth_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../core/token/token_key.dart';
 import './login_service.dart';
 
 class LoginServiceImpl implements LoginService {
@@ -16,6 +17,6 @@ class LoginServiceImpl implements LoginService {
       password: password,
     );
     final sp = await SharedPreferences.getInstance();
-    sp.setString('accessToken', accessToken);
+    sp.setString(TokenKey.key, accessToken);
   }
 }

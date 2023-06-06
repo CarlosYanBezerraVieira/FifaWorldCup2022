@@ -1,3 +1,4 @@
+import 'package:fwc_album_app/app/core/token/token_key.dart';
 import 'package:fwc_album_app/app/pages/splash/view/splash_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,7 +12,7 @@ class SplashPresenterImpl implements SplashPresenter {
     _view.showLoader();
     await Future.delayed(const Duration(seconds: 2));
     final sp = await SharedPreferences.getInstance();
-    final accessToken = sp.getString('accessToken');
+    final accessToken = sp.getString(TokenKey.key);
     _view.logged(accessToken != null);
   }
 
