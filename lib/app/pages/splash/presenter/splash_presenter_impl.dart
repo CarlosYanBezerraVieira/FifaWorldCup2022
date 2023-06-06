@@ -9,9 +9,7 @@ class SplashPresenterImpl implements SplashPresenter {
 
   @override
   Future<void> checkLogin() async {
-    _view.showLoader();
-    await Future.delayed(const Duration(seconds: 2));
-    final sp = await SharedPreferences.getInstance();
+     final sp = await SharedPreferences.getInstance();
     final accessToken = sp.getString(TokenKey.key);
     _view.logged(accessToken != null);
   }
