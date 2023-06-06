@@ -15,7 +15,7 @@ abstract class RegisterViewImpl extends State<RegisterPage> with Loader, Message
   @override
   registerError([String? message]) {
     hideLoader();
-    showError(message: message ?? 'Error ao registrar usuário'); 
+    showError(message: message ?? 'Erro ao registrar usuário'); 
   }
 
   @override
