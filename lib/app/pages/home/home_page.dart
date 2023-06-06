@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:fwc_album_app/app/core/routes/routes_app.dart';
+
 import 'package:fwc_album_app/app/core/ui/styles/button_styles.dart';
 import 'package:fwc_album_app/app/core/ui/styles/colors_app.dart';
 import 'package:fwc_album_app/app/core/ui/styles/text_styles.dart';
 import 'package:fwc_album_app/app/core/ui/widgets/button.dart';
+import 'package:fwc_album_app/app/pages/home/presenter/home_presenter.dart';
+import 'package:fwc_album_app/app/pages/home/view/home_view_impl.dart';
 import 'package:fwc_album_app/app/pages/home/widgets/status_tile.dart';
 
 import 'widgets/sticker_percent_widget.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  final HomePresenter presenter;
+  const HomePage({
+    Key? key,
+    required this.presenter,
+  }) : super(key: key);
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends HomeViewImpl {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +32,9 @@ class HomePage extends StatelessWidget {
           backgroundColor: context.colors.primary,
           actions: [
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  widget.presenter.logout();
+                },
                 icon: const Icon(
                   Icons.logout,
                   color: Colors.white,
@@ -51,12 +66,13 @@ class HomePage extends StatelessWidget {
                               fit: BoxFit.cover,
                             ),
                           ),
-                        const StickerPercentWidget(percent: 60),
+                          StickerPercentWidget(
+                              percent: user?.totalCompletePercente ?? 0),
                           const SizedBox(
                             height: 20,
                           ),
                           Text(
-                            "45 Figurinhas",
+                            "${user?.totalStickers ?? 0} Figurinhas",
                             style: context.textStyle.titleWhite,
                           ),
                           const SizedBox(
@@ -64,7 +80,7 @@ class HomePage extends StatelessWidget {
                           ),
                           StatusTile(
                             label: 'Todas',
-                            value: 38,
+                            value: user?.totalAlbum ?? 0,
                             icon: Image.asset(
                               "assets/images/all_icon.png",
                             ),
@@ -74,7 +90,7 @@ class HomePage extends StatelessWidget {
                           ),
                           StatusTile(
                             label: 'Faltando',
-                            value: 500,
+                            value: user?.totalComplete ?? 0,
                             icon: Image.asset(
                               "assets/images/missing_icon.png",
                             ),
@@ -83,18 +99,20 @@ class HomePage extends StatelessWidget {
                             height: 20,
                           ),
                           StatusTile(
-                            label: 'Todas',
-                            value: 20,
+                            label: 'Repetidas',
+                            value: user?.totalDuplicates ?? 0,
                             icon: Image.asset(
                               "assets/images/repeated_icon.png",
                             ),
                           ),
-                             const SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Button(
-                            width: MediaQuery.of(context).size.width*.9,
-                            onPressed: (){},
+                              width: MediaQuery.of(context).size.width * .9,
+                              onPressed: () {
+                                Navigator.of(context).pushNamed(context.routes.mySticker);
+                              },
                               outlined: true,
                               style: context.buttonStyles.yellowOutlineButton,
                               labelStyle: context
