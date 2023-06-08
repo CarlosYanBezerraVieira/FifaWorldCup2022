@@ -16,7 +16,7 @@ class StickersRepositoryImpl implements StickersRepository {
   Future<List<GroupStickers>> getMyAlbum() async {
     try {
       final result = await dio.get('/api/countries');
-      return (result as List)
+      return (result.data as List)
           .map<GroupStickers>((g) => GroupStickers.fromMap(g))
           .toList();
     } on DioError catch (e, s) {
