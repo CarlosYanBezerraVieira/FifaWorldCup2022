@@ -1,4 +1,4 @@
-abstract class LoginView {
+abstract interface class LoginView {
 void sucess();
 void error(String message);
 }
