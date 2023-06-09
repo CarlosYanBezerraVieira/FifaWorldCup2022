@@ -14,6 +14,7 @@ class RoutesApp {
   String get register => "/auth/register";
   String get home => "/home";
   String get mySticker => "/my-sticker";
+  String get stickerDetail => "/sticker-detail";
 }
 
 extension RoutesAppExtension on BuildContext {

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:fwc_album_app/app/core/enum/sticker_status_enum.dart';
+import 'package:fwc_album_app/app/core/routes/routes_app.dart';
 import 'package:fwc_album_app/app/core/ui/styles/colors_app.dart';
 import 'package:fwc_album_app/app/core/ui/styles/text_styles.dart';
 import 'package:fwc_album_app/app/models/group_stickers.dart';
@@ -104,7 +105,9 @@ class Sticker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).pushNamed(context.routes.stickerDetail);
+      },
       child: Container(
         decoration: BoxDecoration(
             color: (sticker?.duplicate ?? 0) > 0

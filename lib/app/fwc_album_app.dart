@@ -9,6 +9,7 @@ import 'package:fwc_album_app/app/pages/auth/register/register_route.dart';
 import 'package:fwc_album_app/app/pages/home/home_route.dart';
 import 'package:fwc_album_app/app/pages/my_stickers/my_stickers_route.dart';
 import 'package:fwc_album_app/app/pages/splash/splash_route.dart';
+import 'package:fwc_album_app/app/pages/sticker_detail/sticker_detail_route.dart';
 import 'package:fwc_album_app/app/repository/auth/auth_repository.dart';
 import 'package:fwc_album_app/app/repository/auth/auth_repository_impl.dart';
 
@@ -38,6 +39,7 @@ class FwcAlbumApp extends StatelessWidget {
           context.routes.register: (_) => const RegisterRoute(),
           context.routes.home: (_) => const HomeRoute(),
           context.routes.mySticker: (_) => const MyStickersRoute(),
+          context.routes.stickerDetail: (_) => const StickerDetailRoute(),
         },
       ),
     );
