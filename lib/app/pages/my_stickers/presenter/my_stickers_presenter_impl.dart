@@ -50,8 +50,8 @@ class MyStickersPresenterImpl implements MyStickersPresenter {
   @override
   Future<void> refresh() async {
     _view.showLoader();
-   await getMyAlbum();
-    countryFilter(countries);
+    await getMyAlbum();
     statusFilter(statusSelected);
+    countryFilter(countries);
   }
 }
