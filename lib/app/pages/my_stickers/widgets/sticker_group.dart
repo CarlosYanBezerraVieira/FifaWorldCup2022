@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_getit/flutter_getit.dart';
 
 import 'package:fwc_album_app/app/core/enum/sticker_status_enum.dart';
 import 'package:fwc_album_app/app/core/routes/routes_app.dart';
@@ -7,6 +8,7 @@ import 'package:fwc_album_app/app/core/ui/styles/colors_app.dart';
 import 'package:fwc_album_app/app/core/ui/styles/text_styles.dart';
 import 'package:fwc_album_app/app/models/group_stickers.dart';
 import 'package:fwc_album_app/app/models/user_sticker_model.dart';
+import 'package:fwc_album_app/app/pages/my_stickers/presenter/my_stickers_presenter.dart';
 
 class StickerGroup extends StatelessWidget {
   final StatusFilterEnum statusFilter;
@@ -68,6 +70,7 @@ class StickerGroup extends StatelessWidget {
                 stickerNumber: stickerNumber,
                 sticker: sticker,
                 countryCode: group.countryCode,
+                countryName: group.countryName,
               );
 
               if (statusFilter == StatusFilterEnum.all) {
@@ -92,12 +95,13 @@ class StickerGroup extends StatelessWidget {
 
 class Sticker extends StatelessWidget {
   final String stickerNumber;
-
+  final String countryName;
   final String countryCode;
   final UserStickerModel? sticker;
   const Sticker({
     Key? key,
     required this.stickerNumber,
+    required this.countryName,
     required this.countryCode,
     required this.sticker,
   }) : super(key: key);
@@ -105,12 +109,22 @@ class Sticker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.of(context).pushNamed(context.routes.stickerDetail);
+      onTap: () async {
+       final presenter = context.get<MyStickersPresenter>();
+       await Navigator.of(context)
+            .pushNamed(context.routes.stickerDetail, arguments: {
+          'countryCode': countryCode,
+          'stickerNumber': stickerNumber,
+          'countryName': countryName,
+          'stickerUser': sticker,
+        });
+
+        presenter.refresh();
+        
       },
       child: Container(
         decoration: BoxDecoration(
-            color: (sticker?.duplicate ?? 0) > 0
+            color:  sticker != null
                 ? context.colors.primary
                 : context.colors.grey),
         child: Column(
@@ -119,7 +133,7 @@ class Sticker extends StatelessWidget {
               maintainAnimation: true,
               maintainState: true,
               maintainSize: true,
-              visible: sticker != null,
+              visible:  (sticker?.duplicate ?? 0) > 0,
               child: Container(
                 padding: const EdgeInsets.all(2),
                 alignment: Alignment.topRight,
