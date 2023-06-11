@@ -5,6 +5,10 @@ import '../../models/register_sticker_model.dart';
 
 abstract interface class StickersRepository {
   Future<List<GroupStickers>> getMyAlbum();
-  Future<StickerModel?>findStickerByCode({required String stickerCode, required String stickerNumber });
-  Future<StickerModel>create({required RegisterStickerModel registerStickerModel });
+  Future<StickerModel?> findStickerByCode(
+      {required String stickerCode, required String stickerNumber});
+  Future<StickerModel> create(
+      {required RegisterStickerModel registerStickerModel});
+  Future<void> registerUserSticker(int stickerId, int amount);
+  Future<void> updateUserSticker(int stickerId, int amount);
 }
