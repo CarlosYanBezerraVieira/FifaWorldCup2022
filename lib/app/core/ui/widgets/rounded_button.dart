@@ -19,7 +19,7 @@ class RoundedButton extends StatelessWidget {
             shape: BoxShape.circle,
           ),
           child: IconButton(
-            onPressed: () {},
+            onPressed: onPressed,
             icon: Icon(
               icon,
               color: context.colors.greyDart,
