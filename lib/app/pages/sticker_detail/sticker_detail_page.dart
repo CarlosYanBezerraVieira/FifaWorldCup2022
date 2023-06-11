@@ -33,7 +33,9 @@ class _StickerDetailPageState extends StickerDetailViewImpl {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset(
-                "assets/images/sticker_pb.png",
+                hasSticker
+                    ? "assets/images/sticker.png"
+                    : "assets/images/sticker_pb.png",
               ),
               Padding(
                 padding: const EdgeInsets.all(15),
@@ -41,20 +43,24 @@ class _StickerDetailPageState extends StickerDetailViewImpl {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "BRA 17",
+                      "$countryCode $stickerNumber",
                       style: context.textStyle.textPrimaryFontBold
                           .copyWith(fontSize: 22),
                     ),
                     const Spacer(),
-                    RoundedButton(icon: Icons.remove, onPressed: () {}),
+                    RoundedButton(
+                        icon: Icons.remove,
+                        onPressed: widget.presente.decrementAmount),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: Text(
-                        "1",
+                        "$amount",
                         style: context.textStyle.textSecondaryFontMedium,
                       ),
                     ),
-                    RoundedButton(icon: Icons.add, onPressed: () {})
+                    RoundedButton(
+                        icon: Icons.add,
+                        onPressed: widget.presente.incrementAmount)
                   ],
                 ),
               ),
@@ -62,21 +68,23 @@ class _StickerDetailPageState extends StickerDetailViewImpl {
                   alignment: Alignment.centerLeft,
                   padding: const EdgeInsets.only(left: 15, bottom: 10),
                   child: Text(
-                    "Brasil",
+                    countryName,
                     style: context.textStyle.textPrimaryFontRegular,
                   )),
               Button.primary(
-                width: MediaQuery.of(context).size.width *.9,
-                label: "Adicionar Figurinha",
-                onPressed: () {},
+                width: MediaQuery.of(context).size.width * .9,
+                label: hasSticker ? "Atualizar figurinha" : "Adicionar Figurinha",
+                onPressed: widget.presente.saveSticker,
               ),
               Button(
-                   width: MediaQuery.of(context).size.width *.9,
+                width: MediaQuery.of(context).size.width * .9,
                 style: context.buttonStyles.primaryOutlineButton,
                 labelStyle:
                     context.textStyle.textSecondaryFontExtraBoldPrimaryColor,
                 label: "Excluir Figurinha",
-                onPressed: () {},
+                onPressed: () {
+                  widget.presente.deleteSticker();
+                },
                 outlined: true,
               )
             ],
