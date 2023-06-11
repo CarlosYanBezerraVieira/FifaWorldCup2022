@@ -1,7 +1,7 @@
 # Fifa Word Cup 2022
 
 <p1 align ="center">
-<img src="assets\images\splash.png" />
+<img src="assets\images\screen.png" />
 </p1>
 
 
@@ -47,7 +47,7 @@
 # Demostração
 
 <h1 align="center">
-<img src="assets\gif\gif_github.gif" />
+<img src="assets\fwc.gif" />
 </h1>
 
 
