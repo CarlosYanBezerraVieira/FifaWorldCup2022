@@ -3,7 +3,7 @@ import 'dart:convert';
 class RegisterStickerModel {
   final String stickerCode;
   final String name;
-  final int stickerNumber;
+  final String stickerNumber;
   RegisterStickerModel({
     required this.stickerCode,
     required this.name,
@@ -22,7 +22,7 @@ class RegisterStickerModel {
     return RegisterStickerModel(
       stickerCode: map['sticker_code'] ?? '',
       name: map['name'] ?? '',
-      stickerNumber: map['sticker_number']?.toInt() ?? 0,
+      stickerNumber: map['sticker_number'] ?? '',
     );
   }
 

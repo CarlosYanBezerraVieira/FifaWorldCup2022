@@ -1,20 +1,18 @@
 import 'dart:convert';
 
-
 class StickerModel {
- final   int id;
+  final int id;
   final String stickerCode;
- final String stickerName;
- final int stickerNumber;
- final String? stickerImage;
+  final String stickerName;
+  final String stickerNumber;
+  final String stickerImage;
   StickerModel({
-   required this.id ,
-   required this.stickerCode ,
-   required this.stickerName ,
+    required this.id,
+    required this.stickerCode,
+    required this.stickerName,
     required this.stickerNumber,
-   required  this.stickerImage,
+    required this.stickerImage,
   });
-
 
   Map<String, dynamic> toMap() {
     return {
@@ -31,12 +29,13 @@ class StickerModel {
       id: map['id']?.toInt() ?? 0,
       stickerCode: map['sticker_code'] ?? '',
       stickerName: map['sticker_name'] ?? '',
-      stickerNumber: map['sticker_number']?.toInt() ?? 0,
-      stickerImage: map['sticker_image'],
+      stickerNumber: map['sticker_number'] ?? '',
+      stickerImage: map['sticker_image'] ?? '',
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory StickerModel.fromJson(String source) => StickerModel.fromMap(json.decode(source));
+  factory StickerModel.fromJson(String source) =>
+      StickerModel.fromMap(json.decode(source));
 }
