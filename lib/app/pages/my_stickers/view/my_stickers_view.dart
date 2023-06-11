@@ -6,4 +6,5 @@ abstract interface class MyStickersView {
   void error(String message);
   void updateStatusFilter(StatusFilterEnum status);
   void updateAlbum(List<GroupStickers> album);
+  void showLoader();
 }

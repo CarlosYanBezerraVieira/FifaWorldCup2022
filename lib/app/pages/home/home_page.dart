@@ -110,8 +110,10 @@ class _HomePageState extends HomeViewImpl {
                           ),
                           Button(
                               width: MediaQuery.of(context).size.width * .9,
-                              onPressed: () {
-                                Navigator.of(context).pushNamed(context.routes.mySticker);
+                              onPressed: () async {
+                                await Navigator.of(context)
+                                    .pushNamed(context.routes.mySticker);
+                                widget.presenter.getUserData();
                               },
                               outlined: true,
                               style: context.buttonStyles.yellowOutlineButton,

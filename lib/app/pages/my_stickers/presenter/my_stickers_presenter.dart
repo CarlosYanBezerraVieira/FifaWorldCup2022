@@ -7,4 +7,6 @@ abstract interface class MyStickersPresenter
   Future<void> getMyAlbum();
   Future<void> statusFilter(StatusFilterEnum status);
   void countryFilter(List<String>? countries);
+
+  void refresh();
 }

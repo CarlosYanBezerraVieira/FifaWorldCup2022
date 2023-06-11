@@ -35,7 +35,6 @@ class MyStickersPresenterImpl implements MyStickersPresenter {
 
   @override
   void countryFilter(List<String>? countries) {
-   
     this.countries = countries;
     if (countries == null || countries.isEmpty) {
       _view.updateAlbum(album);
@@ -46,5 +45,13 @@ class MyStickersPresenterImpl implements MyStickersPresenter {
 
       _view.updateAlbum(albumFilter);
     }
+  }
+
+  @override
+  Future<void> refresh() async {
+    _view.showLoader();
+   await getMyAlbum();
+    countryFilter(countries);
+    statusFilter(statusSelected);
   }
 }
