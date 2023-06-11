@@ -47,7 +47,7 @@
 # Demostração
 
 <h1 align="center">
-<img src="assets\fwc.gif" />
+<img src="assets\images\fwc.gif" />
 </h1>
 
 
